@@ -47,7 +47,24 @@ namespace DeleGateDemo
             Heater ht = new Heater();
             ht.BoilWater();
 
+            Console.WriteLine("Observer设计模式");
+            Heater heater = new Heater();
+            Alarm alarm = new Alarm();
+            heater.BoilEvent += alarm.MakeAlert;//注册方法
+            heater.BoilEvent += (new Alarm()).MakeAlert;//为匿名对象注册方法
+            heater.BoilEvent += Display.ShowMsg;//注册静态方法
+            heater.BoilWater();
+            Console.WriteLine("End...");
             Console.ReadKey();
+
+            Console.WriteLine(".NET Framework 编码规范");
+            Heater ht1 = new Heater();
+            Alarm am = new Alarm();
+            ht1.Boiled += am.MakeAlert;//注册方法
+            ht1.Boiled += (new Alarm()).MakeAlert;//为匿名对象注册方法
+            ht1.Boiled += new Heater.BoildedEventHandler(alarm.MakeAlert);//也可以这么注册
+            ht1.Boiled += Display.ShowMsg;//注册静态方法
+            heater.BoilWater();
 
         }
         public static void GreetPeople(string name,GreetingDelegate MakeGreeing)
