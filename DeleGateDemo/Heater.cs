@@ -50,10 +50,10 @@ namespace DeleGateDemo
                 //ShowMsg(temperature);
                 if(temperature>95)
                 {
-                    //if(BoilEvent!=null)
-                    //{
-                    //    BoilEvent(temperature);
-                    //}
+                    if (BoilEvent != null)
+                    {
+                        BoilEvent(temperature);
+                    }
                     //下面是符合规范的写法
                     BoiledEventArgs e = new BoiledEventArgs(temperature);
                     OnBoiled(e);
